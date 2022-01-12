@@ -1,6 +1,11 @@
 document.addEventListener("click", function(e) {
     if (e.target.className == "complexity_item") {
         document.getElementById("complexity").innerHTML = e.target.innerHTML;
+        var x = document.getElementsByClassName("complexity_item");
+        for (var i = 0; i < x.length; i++) {
+            x[i].style.backgroundColor = '#ebebeb';
+        }
+        e.target.style.backgroundColor = '#999999';
     }
 });
 
@@ -14,12 +19,22 @@ function gameSetting() {
     var input = document.getElementById("nickname").value;
     if (input != "") {
         document.getElementById("nickname_container").innerHTML = input;
+        document.getElementById("nickname").style.backgroundColor = '#80d350';
     }
+
     let record = JSON.parse(localStorage.getItem(input));
-    if (record == null) {
-        document.getElementById("record_container").innerHTML = '0';
+    console.log(record);
+
+    if (record != null) {
+        var highScore = 0;
+        record.forEach(element => {
+            if (parseInt(element.score) > highScore) highScore = element.score;
+            var score = document.getElementById("score_sidebar").innerHTML;
+            document.getElementById("score_sidebar").innerHTML = score + '<p> Имя игрока: ' + element.nickname + '<br> Счет: ' + element.score + '<br> Время и дата игры: ' + element.currentTime + '</p>';
+        });
+        document.getElementById("record_container").innerHTML = highScore;
     } else {
-        document.getElementById("record_container").innerHTML = record.score;
+        document.getElementById("record_container").innerHTML = '0';
     }
 }
 document.getElementById("theme").onclick = function() {
@@ -27,14 +42,18 @@ document.getElementById("theme").onclick = function() {
     document.getElementById("header").classList.toggle('darkTheme');
     document.getElementById("wrapper").classList.toggle('darkTheme');
 
+    var a = 10;
+    var b = ++a;
+    console.log(a++ + ++b + b + a++);
 
 }
 
 document.getElementById("start_button").onclick = function() {
     if ((document.getElementById("nickname_container").innerHTML != "") && (document.getElementById("complexity").innerHTML != "")) {
-        countDown();
         if (document.getElementById("start_button").innerHTML == "Закончить") {
-            time = 0;
+            time = -1;
+        } else {
+            countDown();
         }
         if (document.getElementById("start_button").innerHTML == "Перезапустить") {
             time = 20;
@@ -61,27 +80,41 @@ function countDown() {
         }
 
         if (time < 0) {
+            console.log('зашел');
+
             clearInterval(timeinterval);
             timer.innerHTML = 'Время вышло';
             document.getElementById("cards__body").style.display = 'none';
             document.getElementById("start_button").innerHTML = "Перезапустить";
             document.getElementById("task_container").style.display = 'none';
+
             let nickname = document.getElementById("nickname_container").innerHTML;
             let score = document.getElementById("score").innerHTML;
+            let record = JSON.parse(localStorage.getItem(nickname));
+
             let result = {
                 nickname,
                 score,
                 currentTime: new Date()
             }
-            let record = JSON.parse(localStorage.getItem(nickname));
-            let recordScore = 0;
+
             if (record != null) {
-                recordScore = record.score;
+                var playersScores = record;
+            } else {
+                var playersScores = [];
             }
-            if ((parseInt(recordScore) < parseInt(score))) {
-                localStorage.setItem(nickname, JSON.stringify(result));
-                document.getElementById("record_container").innerHTML = score;
-            }
+
+            playersScores.push(result);
+            console.log(playersScores);
+            localStorage.setItem(nickname, JSON.stringify(playersScores));
+            var highScore = 0;
+            document.getElementById("score_sidebar").innerHTML = '';
+            playersScores.forEach(element => {
+                if (parseInt(element.score) > highScore) highScore = element.score;
+                var score = document.getElementById("score_sidebar").innerHTML;
+                document.getElementById("score_sidebar").innerHTML = score + '<p> Имя игрока: ' + element.nickname + '<br> Счет: ' + element.score + '<br> Время и дата игры: ' + element.currentTime + '</p>';
+            });
+            document.getElementById("record_container").innerHTML = highScore;
         }
     }
 }
@@ -129,16 +162,42 @@ function genCards() {
             wordArrCopy.splice(w, 1);
         }
     }
+    switch (level) {
+        case "Легкий":
+            document.getElementById("text_task").innerHTML = 'Найдите карточки, на которых слово обозначает этот цвет:';
+            break;
+        case "Средний":
+            document.getElementById("text_task").innerHTML = 'Найдите карточки этого цвета:';
+            break;
+        case "Сложный":
+            document.getElementById("text_task").innerHTML = 'Найдите карточки, на которых буквы этого цвета:';
+            break;
+    }
 
-    var wordLevel = genLevel(cardsW, colorArr, wordArr);
-    updateCards(cardsBC, cardsWC, cardsW, wordLevel);
+    var wordLevel = genLevel(cardsW, cardsBC, cardsWC, colorArr, wordArr, level);
+    console.log(wordLevel);
+    updateCards(cardsBC, cardsWC, cardsW, wordLevel, level);
 }
 
-function genLevel(cardsW, colorArr, wordArr) {
-    var ind = random(cardsW.length);
-    var value = cardsW[ind];
-    var color = colorArr[wordArr.indexOf(value)];
-    document.getElementById("color").style.backgroundColor = color;
+function genLevel(cardsW, cardsBC, cardsWC, colorArr, wordArr, level) {
+    if (level == "Легкий") {
+        var ind = random(cardsW.length);
+        var value = cardsW[ind];
+        var color = colorArr[wordArr.indexOf(value)];
+        document.getElementById("color").style.backgroundColor = color;
+    }
+    if (level == "Средний") {
+        var ind = random(cardsBC.length);
+        var color = cardsBC[ind];
+        document.getElementById("color").style.backgroundColor = color;
+        var value = cardsW[ind];
+    }
+    if (level == "Сложный") {
+        var ind = random(cardsWC.length);
+        var color = cardsWC[ind];
+        document.getElementById("color").style.backgroundColor = color;
+        var value = cardsW[ind];
+    }
     return value;
 }
 
