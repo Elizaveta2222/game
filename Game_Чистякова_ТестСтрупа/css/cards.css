@@ -6,16 +6,18 @@
     position: relative;
     top: 80px;
     font-size: 24px;
+    font-weight: bolder;
     text-align: center;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 60px;
+    margin-right: 20px;
     margin-bottom: 200PX;
+    column-count: 2;
 }
 
 .card_container {
     line-height: 50px;
     height: 50px;
-    margin: 20px;
+    margin-bottom: 20px;
 }
 
 .page {
@@ -32,7 +34,8 @@
 
 #color {
     height: 50px;
-    width: 100%;
+    width: 50%;
+    left: 30%;
     position: absolute;
 }
 
