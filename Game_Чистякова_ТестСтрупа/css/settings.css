@@ -21,6 +21,7 @@
     margin: auto;
     background: #ebebeb;
     position: relative;
+    z-index: 100;
 }
 
 .settings_container.darkTheme {
@@ -50,7 +51,7 @@
 }
 
 .button_item {
-    margin-top: 200px;
+    margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
     align-self: center;
