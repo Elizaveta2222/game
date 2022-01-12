@@ -1,0 +1,123 @@
+#blackout {
+    background: rgba(102, 102, 102, 0.5);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+.settings_container {
+    width: 500px;
+    height: 400px;
+    font-size: 18px;
+    text-align: center;
+    padding: 15px;
+    border: 3px solid #181818;
+    border-radius: 10px;
+    color: #181818;
+    top: 200px;
+    margin: auto;
+    background: #ebebeb;
+    position: relative;
+    z-index: 100;
+}
+
+.settings_container.darkTheme {
+    border: 3px solid #cccccc;
+    color: #cccccc;
+    background: #303030;
+}
+
+#blackout:target {
+    display: block;
+}
+
+.close {
+    display: inline-block;
+    border: 1px solid #181818;
+    color: #181818;
+    padding: 5px 12px;
+    margin: 10px;
+    text-decoration: none;
+    background: #4daf35;
+    font-size: 14pt;
+    cursor: pointer;
+}
+
+.close:hover {
+    background: #ebebeb;
+}
+
+.button_item {
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+    width: 30%;
+    font-size: 28px;
+    padding: 10px;
+    background-color: #ebebeb;
+    border: 3px solid #181818;
+    text-align: center;
+    color: #181818;
+    cursor: pointer;
+}
+
+.complexity_item:hover {
+    background: #aaa9a9;
+}
+
+.complexity_item:active {
+    background: #797878;
+}
+
+.complexity_item {
+    padding: 7px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #181818;
+    width: 400px;
+    font-size: 20px;
+}
+
+.buttons_container {
+    display: flex;
+    justify-content: space-between;
+}
+
+A {
+    color: #181818;
+}
+
+A:visited {
+    color: #181818;
+}
+
+A:active {
+    color: #181818;
+}
+
+#theme {
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #181818;
+    color: #aaa9a9;
+    width: 400px;
+}
+
+#theme:hover {
+    background: #868686;
+}
+
+#theme:active {
+    background: #585858;
+}

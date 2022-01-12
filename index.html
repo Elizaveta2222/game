@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Главная</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="settings.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="cards.css">
+    <meta name="viewport" content="width=devixe-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="wrapper" id="wrapper">
+        <header class="header" id="header">
+            <div class="header__container _container">
+                <div class="header__menu menu">
+                    <nav class="menu__body">
+                        <ul class="menu__list">
+                            <li class="menu__item">
+                                <div class="menu__link">
+                                    <h2>Время</h2>
+                                    <div class="menu_value">
+                                        <div class="timer_container" id="timer"></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="menu__item">
+                                <div class="menu__link">
+                                    <h2>Уровень сложности</h2>
+                                    <div class="menu_value">
+                                        <div id="complexity"></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="menu__item">
+                                <div class="menu__link">
+                                    <h2>Счет</h2>
+                                    <div class="menu_value">
+                                        <div class="score_container" id="score"></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="menu__item">
+                                <div class="menu__link">
+                                    <h2>Имя игрока</h2>
+                                    <div class="menu_value">
+                                        <div class="nickname_container" id="nickname_container"></div>
+                                    </div>
+                                </div>
+
+                            </li>
+                            <li class="menu__item">
+                                <div class="menu__link">
+                                    <h2>Рекорд</h2>
+                                    <div class="menu_value">
+                                        <div class="record_container" id="record_container"></div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <main class="page">
+            <div class="blackout" id="blackout">
+                <div class="settings_container" id="settings">
+                    <div class="authorization">
+                        <p>Введите имя</p>
+                        <input type="text" id="nickname">
+                        <button onClick="JavaScript:gameSetting()">Войти</button>
+                    </div>
+                    <div class="complexity_container">
+                        <p>Выберете уровень сложности</p>
+                        <div class="complexity_item" id="complexity_item">Сложный</div>
+                        <div class="complexity_item" id="complexity_item">Средний</div>
+                        <div class="complexity_item" id="complexity_item">Легкий</div>
+                    </div>
+                    <div id="theme">Сменить тему</div>
+                    <a href="#" class="close" id="done">Готово</a>
+                </div>
+            </div>
+
+            <div class="buttons_container">
+                <div class="button_item">
+                    <a href="#blackout">
+                        <div id="settings_button">Настройки</div>
+                    </a>
+                </div>
+                <div class="button_item">
+                    <div id="start_button">
+                        Начать игру
+                    </div>
+                </div>
+            </div>
+            <div id="task_container">
+                <p id="text_task">Найдите карточки, на которых слово обозначает этот цвет:</p>
+                <div id="color"></div>
+            </div>
+
+            <div class="page__cards cards">
+                <div class="cards__container _container">
+                    <div class="cards__body" id="cards__body">
+                    </div>
+                </div>
+            </div>
+            <div id="score_sidebar">
+
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

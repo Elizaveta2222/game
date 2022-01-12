@@ -1,0 +1,71 @@
+.cards__body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 95%;
+    position: relative;
+    top: 80px;
+    font-size: 24px;
+    font-weight: bolder;
+    text-align: center;
+    margin-left: 60px;
+    margin-right: 20px;
+    margin-bottom: 200PX;
+    column-count: 2;
+}
+
+.card_container {
+    line-height: 50px;
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+.page {
+    flex: 1 1 auto;
+}
+
+#task_container {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: none;
+}
+
+#color {
+    height: 50px;
+    width: 50%;
+    left: 30%;
+    position: absolute;
+}
+
+.animateInTime {
+    animation: shift 1s ease-in-out;
+}
+
+@keyframes shift {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(500px, 0px);
+    }
+    100% {
+        transform: translate(0px, 0px);
+    }
+}
+
+.animateEnd {
+    animation: shiftEnd 1s ease-in-out;
+    transition: 1s;
+    opacity: 0;
+}
+
+@keyframes shiftEnd {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(1000px, 0px);
+    }
+}
