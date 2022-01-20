@@ -69,3 +69,32 @@
         transform: translate(1000px, 0px);
     }
 }
+
+.cards__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    flex-direction: row;
+}
+
+#answer_container {
+    width: 40%;
+    height: 300px;
+    margin-top: 100px;
+    background-color: rgb(148, 250, 144);
+    display: none;
+}
+
+#answer {
+    display: none;
+}
+
+#result {
+    font-size: 30px;
+    font-weight: bolder;
+    margin: auto;
+    text-align: center;
+    line-height: 200px;
+    display: none;
+}
